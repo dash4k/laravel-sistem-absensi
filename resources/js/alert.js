@@ -21,3 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.querySelectorAll('.deleteButton').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const form = button.closest('form');
+
+        Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            text: 'Tindakan ini tidak bisa dibatalkan!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e3342f',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+});

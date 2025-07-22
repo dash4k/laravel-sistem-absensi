@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Shift {{ Auth::user()->name }}
+            Shift {{ $shift->user->name }}
         </h2>
     </x-slot>
 
@@ -21,8 +21,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="border px-4 py-2 break-words capitalize">{{ ucfirst(Auth::user()->name) }}</td>
+                            <tr class="text-xs lg:text-sm">
+                                <td class="border px-4 py-2 break-words capitalize">{{ ucfirst($shift->user->name) }}</td>
                                 <td class="border px-4 py-2 break-words">{{ ucfirst($shift->shift_type) }}</td>
                                 <td class="border px-4 py-2 break-words">
                                     @if ($shift->shift_type === 'pagi')
@@ -57,26 +57,26 @@
                         </thead>
                         <tbody>
                             @forelse ($absensis as $absensi)
-                                <tr>
+                                <tr class="text-xs lg:text-sm">
                                     <td class="border px-4 py-2 break-words capitalize">{{ $absensi->time }}</td>
                                     <td class="border px-4 py-2 break-words">
-                                        <a href="https://www.google.com/maps?q={{ $absensi->latitude }},{{ $absensi->longitude }}" class="text-blue-600 hover:cursor-pointer capitalize">{{ $absensi->lokasi }}</a>    
+                                        <a href="https://www.google.com/maps?q={{ $absensi->latitude }},{{ $absensi->longitude }}" class="text-blue-600 dark:text-blue-300 hover:cursor-pointer capitalize">{{ $absensi->lokasi }}</a>    
                                     </td>
                                     <td class="border px-4 py-2 break-words capitalize">
                                         @switch($absensi->status)
                                             @case('on_duty')
-                                                <span class="bg-green-200 font-black p-1 rounded-md">On Duty</span>
+                                                <span class="bg-green-200 dark:bg-green-800 font-black p-1 rounded-md">On Duty</span>
                                                 @break
                                             @case('off_duty')
-                                                <span class="bg-red-200 font-black p-1 rounded-md">Off Duty</span>
+                                                <span class="bg-red-200 dark:bg-red-800 font-black p-1 rounded-md">Off Duty</span>
                                                 @break
                                             @case('istirahat')
-                                                <span class="bg-yellow-200 font-black p-1 rounded-md">Istirahat</span>
+                                                <span class="bg-yellow-200 dark:bg-yellow-800 font-black p-1 rounded-md">Istirahat</span>
                                                 @break
                                         @endswitch
                                     </td>
                                     <td class="border px-4 py-2">
-                                        <a href="{{ asset('storage/' . $absensi->bukti) }}" target="_blank" class="text-blue-600 hover:underline"><i class="fa-solid fa-up-right-from-square"></i></a>
+                                        <a href="{{ asset('storage/' . $absensi->bukti) }}" target="_blank" class="text-blue-600 dark:text-blue-300 hover:underline"><i class="fa-solid fa-up-right-from-square"></i></a>
                                     </td>
                                 </tr>
                             @empty

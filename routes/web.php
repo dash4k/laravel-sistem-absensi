@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\RekapanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\AbsensiController;
 use App\Http\Controllers\User\ShiftController;
@@ -26,10 +28,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.rekapan-harian');
-    })->name('admin.dashboard');
-    // Add other admin routes here
+    Route::get('/admin/rekapan/harian', [RekapanController::class, 'harian'])->name('admin.dashboard');
+    Route::resource('admin/pegawai', AccountController::class)->names('admin.pegawai');
+    Route::get('/admin/shift/{id}', [RekapanController::class, 'showAbsensi'])->name('admin.absensi');
 });
 
 require __DIR__.'/auth.php';

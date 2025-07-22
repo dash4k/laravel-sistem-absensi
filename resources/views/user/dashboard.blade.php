@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h2 class="font-bold text-md">Selamat Datang, {{ Auth::user()->name }}!</h2>
-                    <h3 class="font-bold text-xs mt-4">To Do List:</h3>
+                    <h3 class="font-bold text-xs mt-4">Job {{ now()->translatedFormat('l, d F Y') }}</h3>
                     <table class="table-fixed w-full text-center text-sm break-words">
                         <thead class="bg-blue-600 text-white font-black">
                             <tr>
@@ -41,7 +41,7 @@
                                 </tr>
                             @else
                                 <tr>
-                                    <td colspan="2" class="border px-4 py-2 break-words capitalize">Anda sudah menyelesaikan semua tugas hari ini.</td> 
+                                    <td colspan="2" class="border px-4 py-2 break-words capitalize">Anda sudah menyelesaikan semua job hari ini.</td> 
                                 </tr>
                             @endif
                         </tbody>

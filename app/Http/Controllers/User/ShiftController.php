@@ -32,7 +32,7 @@ class ShiftController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $now = now()->toDateString();
+        $now = now();
 
         if (Shift::where('user_id', $user->id)->where('date', $now)->exists()) {
             return redirect()->back()->with('error', 'Shift Anda untuk hari ini telah terdaftar!');
@@ -80,7 +80,7 @@ class ShiftController extends Controller
      */
     public function show(string $id)
     {
-        $shift = Shift::findOrFail($id);
+        $shift = Shift::with('user', 'absensis')->findOrFail($id);
         $absensis = $shift->absensis;
 
         return view('user.absensi-recap', compact('shift', 'absensis'));
