@@ -21,6 +21,7 @@ class Shift extends Model
         'start_time',
         'end_time',
         'keterangan',
+        'bukti',
     ];
 
     /**

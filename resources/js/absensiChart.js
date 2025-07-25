@@ -7,11 +7,11 @@ window.renderPegawaiChart = function (chartData) {
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['On Duty', 'Off Duty', 'Istirahat', 'Belum Absen'],
+            labels: ['On Duty', 'Off Duty', 'Istirahat', 'Belum Absen', 'Izin'],
             datasets: [{
                 label: 'Pegawai',
                 data: chartData,
-                backgroundColor: ['#4ade80', '#f87171', '#facc15', '#9ca3af'],
+                backgroundColor: ['#4ade80', '#f87171', '#facc15', '#9ca3af', '#bfdbfe'],
                 borderWidth: 1
             }]
         },

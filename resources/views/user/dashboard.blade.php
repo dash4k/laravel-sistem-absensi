@@ -26,7 +26,7 @@
                                         <a href="{{ route('shift.index') }}" class="text-blue-400 hover:underline"><i class="fa-solid fa-up-right-from-square"></i></a>
                                     </td>
                                 </tr>
-                            @elseif (!Auth::user()->clockOut())
+                            @elseif (!Auth::user()->clockOut() && (Auth::user()->role == 'user' && Auth::user()->todaysShift()->shift_type != 'izin'))
                                 <tr>
                                     <td class="border px-4 py-2 break-words">
                                         @if (!Auth::user()->todaysShift()->absensis)

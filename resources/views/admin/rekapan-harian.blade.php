@@ -50,6 +50,12 @@
                                                                     @break
                                                             @endswitch
                                                         </a>
+                                                    @elseif ($shift->shift_type == 'izin')
+                                                        <a href="{{ route('admin.absensi', $shift->id) }}"> 
+                                                            <span class="bg-blue-200 dark:bg-blue-800 font-black p-1 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-150 px-5">Izin</span>
+                                                        </a>
+                                                    @else
+                                                        <span class="bg-gray-800 dark:bg-gray-200 dark:text-black font-black p-1 rounded-md hover:bg-gray-600 hover:text-white transition-all duration-150">Belum Absen</span>
                                                     @endif
                                                 @else
                                                     <span class="bg-gray-400 font-black p-1 text-white rounded-md">Belum Absen</span>
@@ -82,7 +88,7 @@
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                window.renderPegawaiChart([{{ $onDuty }}, {{ $offDuty }}, {{ $istirahat }}, {{ $noAbsen }}]);
+                window.renderPegawaiChart([{{ $onDuty }}, {{ $offDuty }}, {{ $istirahat }}, {{ $noAbsen }}, {{ $izin }}]);
             });
         </script>
     @endpush

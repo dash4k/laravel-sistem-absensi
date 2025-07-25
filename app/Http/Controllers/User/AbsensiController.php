@@ -48,6 +48,7 @@ class AbsensiController extends Controller
 
         $request->validate([
             'lokasi' => 'required|string|max:255',
+            'keterangan' => 'required|string',
             'status' => 'required|in:on_duty,off_duty,istirahat',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
@@ -62,6 +63,7 @@ class AbsensiController extends Controller
             'bukti' => $buktiPath,
             'status' => $request->input('status'),
             'lokasi' => $request->input('lokasi'),
+            'keterangan' => $request->input('keterangan'),
             'latitude' => $request->input('latitude'),
             'longitude' => $request->input('longitude'),
         ]);

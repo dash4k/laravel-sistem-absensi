@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('bukti');
             $table->enum('status', ['on_duty', 'off_duty', 'istirahat']);
             $table->string('lokasi');
+            $table->mediumText('keterangan')->nullable()->default(null);
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->timestamps();

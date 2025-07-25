@@ -17,6 +17,7 @@
                                 <th class="border px-4 py-2">Lokasi</th>
                                 <th class="border px-4 py-2">Status</th>
                                 <th class="border px-4 py-2">Bukti</th>
+                                <th class="border px-4 py-2 max-w-[200px]">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,18 +43,31 @@
                                     <td class="border px-4 py-2">
                                         <a href="{{ asset('storage/' . $absensi->bukti) }}" target="_blank" class="text-blue-600 dark:text-blue-300 hover:underline"><i class="fa-solid fa-up-right-from-square"></i></a>
                                     </td>
-                                </tr>
-                            @else
-                                <tr>
-                                    <td colspan="4" class="border px-4 py-2 text-center">
-                                        Tidak ada data absensi untuk hari ini.
+                                    <td class="border px-4 py-2 text-start break-words">
+                                        <div class="max-h-[100px] overflow-y-auto">
+                                            {{ $absensi->keterangan }}
+                                        </div>
                                     </td>
                                 </tr>
+                            @else
+                                @if (Auth::user()->role == 'user' && Auth::user()->todaysShift()->shift_type == 'izin')
+                                    <tr>
+                                        <td colspan="5" class="border px-4 py-2 text-center">
+                                            Tidak ada absensi untuk hari ini. Anda sedang izin.
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td colspan="5" class="border px-4 py-2 text-center">
+                                            Tidak ada data absensi untuk hari ini.
+                                        </td>
+                                    </tr>
+                                @endif
                             @endif
                         </tbody>
                     </table>
                 </div>
-                @if (($absensi && $absensi->status !== 'off_duty') || !$absensi)
+                @if (($absensi && $absensi->status !== 'off_duty') || !$absensi && (Auth::user()->role == 'user' && Auth::user()->todaysShift()->shift_type != 'izin'))
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <h2 class="font-bold text-md">Buat Absensi Baru</h2>
                         <form action="{{ route('absensi.store') }}" method="post" enctype="multipart/form-data" class="border p-4 rounded-md bg-white dark:bg-gray-800 mt-1">
@@ -71,6 +85,10 @@
                                 </select>
                                 <input type="hidden" name="latitude" id="latitude">
                                 <input type="hidden" name="longitude" id="longitude">
+                            </div>
+                            <div class="mb-4">
+                                <label for="keterangan" class="block text-sm font-medium">Keterangan</label>
+                                <textarea name="keterangan" id="keterangan" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
                             </div>
                             <div class="mt-4">
                                 <label for="bukti" class="">Bukti Absensi</label>

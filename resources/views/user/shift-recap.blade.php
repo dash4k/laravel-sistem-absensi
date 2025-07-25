@@ -99,7 +99,7 @@
                             @empty
                                 <tr>
                                     <td colspan="6" class="border px-4 py-2 text-center">
-                                        Tidak ada riwayat shift untuk {{ now()->translatedFormat('l, d F Y') }}
+                                        Tidak ada data riwayat shift terkini.
                                     </td>
                                 </tr>
                             @endforelse

@@ -21,6 +21,7 @@ class Absensi extends Model
         'bukti',
         'status',
         'lokasi',
+        'keterangan',
         'latitude',
         'longitude',
     ];

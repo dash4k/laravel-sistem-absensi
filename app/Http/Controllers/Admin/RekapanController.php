@@ -28,24 +28,31 @@ class RekapanController extends Controller
         $offDuty = 0;
         $istirahat = 0;
         $noAbsen = 0;
+        $izin = 0;
 
         foreach ($users as $pegawai) {
             $shift = $todayShifts->firstWhere('user_id', $pegawai->id);
             $absensi = $todayAbsensis->firstWhere('shift_id', $shift->id ?? null);
 
-            if (!$shift || !$absensi) {
+            if (!$shift) {
                 $noAbsen++;
             } else {
-                switch ($absensi->status) {
-                    case 'on_duty':
-                        $onDuty++;
-                        break;
-                    case 'off_duty':
-                        $offDuty++;
-                        break;
-                    case 'istirahat':
-                        $istirahat++;
-                        break;
+                if ($shift->shift_type == 'izin') {
+                    $izin++;
+                } elseif($shift->shift_type != 'izin'&& !$absensi) {
+                    $noAbsen++;
+                } else {
+                    switch ($absensi->status) {
+                        case 'on_duty':
+                            $onDuty++;
+                            break;
+                        case 'off_duty':
+                            $offDuty++;
+                            break;
+                        case 'istirahat':
+                            $istirahat++;
+                            break;
+                    }
                 }
             }
         }
@@ -76,6 +83,7 @@ class RekapanController extends Controller
             'offDuty',
             'istirahat',
             'noAbsen',
+            'izin',
         ));
     }
 
@@ -84,6 +92,9 @@ class RekapanController extends Controller
         $shift = Shift::findOrFail($id);
         $absensis = $shift->absensis;
 
+        if ($shift->shift_type == 'izin') {
+            return view('user.absensi-recap-izin', compact('shift', 'absensis'));
+        }
         return view('user.absensi-recap', compact('shift', 'absensis'));
     }
 }

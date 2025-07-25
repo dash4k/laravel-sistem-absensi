@@ -53,6 +53,7 @@
                                 <th class="border px-4 py-2">Lokasi</th>
                                 <th class="border px-4 py-2">Status</th>
                                 <th class="border px-4 py-2">Bukti</th>
+                                <th class="border px-4 py-2">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,10 +79,15 @@
                                     <td class="border px-4 py-2">
                                         <a href="{{ asset('storage/' . $absensi->bukti) }}" target="_blank" class="text-blue-600 dark:text-blue-300 hover:underline"><i class="fa-solid fa-up-right-from-square"></i></a>
                                     </td>
+                                    <td class="border px-4 py-2 text-start break-words">
+                                        <div class="max-h-[100px] overflow-y-auto">
+                                            {{ $absensi->keterangan }}
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="border px-4 py-2 text-center">
+                                    <td colspan="5" class="border px-4 py-2 text-center">
                                         Tidak ada data absensi untuk hari ini.
                                     </td>
                                 </tr>
