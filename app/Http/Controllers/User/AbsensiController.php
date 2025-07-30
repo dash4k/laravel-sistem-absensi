@@ -52,7 +52,7 @@ class AbsensiController extends Controller
             'status' => 'required|in:on_duty,off_duty,istirahat',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'bukti' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'bukti' => 'required|image|mimes:jpeg,png,jpg|max:20480',
         ]);
 
         $buktiPath = $request->file('bukti')->store('bukti_absensi', 'public');

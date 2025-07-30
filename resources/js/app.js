@@ -2,6 +2,7 @@ import './alert.js';
 import './absensiChart.js';
 import './bootstrap';
 import './pegawai.js';
+import './reimburse.js';
 import Alpine from 'alpinejs';
 import Chart from 'chart.js/auto';
 

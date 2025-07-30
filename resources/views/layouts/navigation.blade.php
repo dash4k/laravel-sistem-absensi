@@ -22,12 +22,18 @@
                         <x-nav-link :href="route('absensi.index')" :active="request()->routeIs('absensi.*')">
                             Absensi
                         </x-nav-link>
+                        <x-nav-link :href="route('reimburse.user.index')" :active="request()->routeIs('reimburse.user.*')">
+                            Reimburse
+                        </x-nav-link>
                     @else
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard') || request()->routeIs('admin.absensi')">
                             Harian
                         </x-nav-link>
                         <x-nav-link :href="route('admin.pegawai.index')" :active="request()->routeIs('admin.pegawai.*')">
                             Pegawai
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.reimburse.index')" :active="request()->routeIs('admin.reimburse.*')">
+                            Reimburse
                         </x-nav-link>
                     @endif
                 </div>
@@ -92,12 +98,18 @@
                 <x-responsive-nav-link :href="route('absensi.index')" :active="request()->routeIs('absensi.*')">
                     Absensi
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('reimburse.user.index')" :active="request()->routeIs('reimburse.user.*')">
+                    Reimburse
+                </x-responsive-nav-link>
             @else
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard') || request()->routeIs('admin.absensi')">
                     Harian
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.pegawai.index')" :active="request()->routeIs('admin.pegawai.*')">
                     Pegawai
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.reimburse.index')" :active="request()->routeIs('admin.reimburse.*')">
+                    Reimburse
                 </x-responsive-nav-link>
             @endif
         </div>

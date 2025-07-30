@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('shift_type', ['pagi', 'sore', 'izin']);
             $table->time('start_time');
             $table->time('end_time')->nullable()->default(null);
-            $table->string('keterangan')->nullable()->default(null);
+            $table->mediumText('keterangan')->nullable()->default(null);
             $table->string('bukti')->nullable()->default(null);
             $table->timestamps();
         });

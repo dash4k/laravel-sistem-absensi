@@ -45,7 +45,7 @@ class ShiftController extends Controller
         if ($request->input('shift_type') === 'izin') {
             if ($request->hasFile('bukti') && $request->input('keterangan')) {
                 $request->validate([
-                    'bukti' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                    'bukti' => 'required|image|mimes:jpeg,png,jpg|max:20480',
                     'keterangan' => 'required|string|max:255',
                 ]);
 

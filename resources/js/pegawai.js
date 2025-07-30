@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const formContainer = document.getElementById('formContainer');
     const pegawaiForm = document.getElementById('pegawaiForm');
+
+    if (!addButton || !cancelButton || !formContainer || !pegawaiForm) {
+        return;
+    }
     
     function toggleForm(show = true) {
         pegawaiForm.classList.toggle('hidden', !show);
