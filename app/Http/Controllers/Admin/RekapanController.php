@@ -32,7 +32,7 @@ class RekapanController extends Controller
 
         foreach ($users as $pegawai) {
             $shift = $todayShifts->firstWhere('user_id', $pegawai->id);
-            $absensi = $todayAbsensis->firstWhere('shift_id', $shift->id ?? null);
+            $absensi = $todayAbsensis->where('shift_id', $shift->id ?? null)->last();
 
             if (!$shift) {
                 $noAbsen++;
@@ -59,7 +59,7 @@ class RekapanController extends Controller
 
         $sortedUsers = $users->sortBy(function ($pegawai) use ($todayShifts, $todayAbsensis) {
             $shift = $todayShifts->firstWhere('user_id', $pegawai->id);
-            $absensi = $todayAbsensis->firstWhere('shift_id', $shift->id ?? null);
+            $absensi = $todayAbsensis->where('shift_id', $shift->id ?? null)->last();
 
             // Assign priority number for each status
             if (!$shift || !$absensi) {

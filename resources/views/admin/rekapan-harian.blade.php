@@ -29,7 +29,7 @@
                                     @forelse ($sortedUsers as $pegawai)
                                         @php
                                             $shift = $todayShifts->firstWhere('user_id', $pegawai->id);
-                                            $absensi = $todayAbsensis->firstWhere('shift_id', $shift->id ?? null);
+                                            $absensi = $todayAbsensis->where('shift_id', $shift->id ?? null)->last();
                                         @endphp
                                         <tr class="text-xs lg:text-sm">
                                             <td class="border px-4 py-2">{{ $pegawai->name }}</td>
